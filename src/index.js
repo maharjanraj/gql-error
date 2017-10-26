@@ -47,7 +47,7 @@ const GQLError = {
     let locale = has(options, 'lang') ? locales(options['lang']) : locales(),
       gql = has(options, 'gql') ? options.gql : true;
 
-    let errormsg = result(locale, message);
+    let errormsg = result(locale, message, message);
 
     if (gql) throw new GError(errormsg)
     else throw new Error(errormsg);
@@ -60,7 +60,7 @@ const GQLError = {
         rules[rule] = GQLError.localize(locale, rules[rule]);
       }
       if (has(rules[rule], 'message')) {
-        rules[rule]['message'] = result(locale, rules[rule]['message']);
+        rules[rule]['message'] = result(locale, rules[rule]['message'], rules[rule]['message']);
       }
     }
 
@@ -68,4 +68,5 @@ const GQLError = {
   }
 };
 
-export default GQLError;
+module.exports = GQLError;
+

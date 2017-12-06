@@ -1,6 +1,6 @@
 {
   "name": "gql-error",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Used to throw graphql error during validation",
   "main": "./lib",
   "directories": {

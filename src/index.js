@@ -31,7 +31,7 @@ const GQLError = {
     let locale = has(options, 'lang') ? locales(options['lang']) : locales(),
       gql = has(options, 'gql') ? options.gql : true;
 
-    rules = GQLError.localize(locale, rules);
+    rules = GQLError.localizeRules(locale, rules);
 
     let errors = validate(input, rules, { fullMessages: false });
 
@@ -53,11 +53,16 @@ const GQLError = {
     else throw new Error(errormsg);
   },
 
-  localize: (locale, rules) => {
+  localizeString: (message, options) => {
+    let locale = has(options, 'lang') ? locales(options['lang']) : locales();
 
+    return result(locale, message, message);
+  },
+
+  localizeRules: (locale, rules) => {
     for (let rule in rules) {
-      if (!has(rules[rule], 'message') && typeof(rules[rule] == 'object')) {
-        rules[rule] = GQLError.localize(locale, rules[rule]);
+      if (!has(rules[rule], 'message') && typeof (rules[rule] == 'object')) {
+        rules[rule] = GQLError.localizeRules(locale, rules[rule]);
       }
       if (has(rules[rule], 'message')) {
         rules[rule]['message'] = result(locale, rules[rule]['message'], rules[rule]['message']);

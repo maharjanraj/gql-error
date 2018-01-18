@@ -16,6 +16,9 @@ Third parameter: options for localization and others.
 First parameter: concatenated string that matches json path in config files as shown below.  
 Second parameter: same as above third parameter.
 
+**localizeString(message[, options])** takes 2 parameter (This API actually doesn't throw any error but returns a localized message from our locale config files.)
+First parameter: concatenated string that matches json path in config files as shown below.  
+
 ##### Options
 * lang (string) - Which localization to use. Default 'en'.
 * gql (boolean) - If true uses throws graphql error. If false, throws error as original nodejs error. Default true.
